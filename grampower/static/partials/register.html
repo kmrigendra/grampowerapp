@@ -1,0 +1,97 @@
+
+<div class="row" >
+	<div class="col-md-10 col-md-offset-1" style="background-color: #F9F9F9;">
+	<div class="row form">
+		<div class="col-lg-12 col-xs-12  col-md-12 text-left" > 
+		<p class="large">List your store for <strong>FREE</strong> with India's leading local search engine.</p>
+		<p class="small">Enter your details below</p>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-md-6 col-sm-offset-0 shadow">
+			<div class="ch">
+				<div class="input-label">Store Name</div>
+				<input type="text" id="fcom" name="sn" value="" ng-model="store.name" placeholder="Store Name*" validation="storename" tabindex="1">
+			</div>
+			<div class="ch">
+				<div class="input-label">License No</div>
+ 				  <input type="text" id="fcom" name="sn" value="" ng-model="store.licence_no" placeholder="License No*" validation="storename" tabindex="1">
+			</div>
+			<div class="ch">
+				<div class="input-label">Street Address</div>
+				<input type="text" id="fcom" name="sn" value="" ng-model="store.street_address" placeholder="Street Address" validation="storename" tabindex="1">
+			</div>
+			<div class="ch">
+				<div class="input-label">Postal Code</div>
+				<input type="text" id="fcom" name="sn" value="" ng-model="store.postal_code" placeholder="Postal Code" validation="storename" tabindex="1">
+			</div>
+			<div class="ch">
+				<div class="input-label">City</div>
+				<input type="text" id="fcom" name="sn" value="" ng-model="store.city" placeholder="City" validation="storename" tabindex="1">
+			</div>
+			<div class="ch">
+				<div class="input-label">Country</div>
+					<input type="text" id="fcom" name="sn" value="India" ng-model="store.country" placeholder="Country" validation="storename" tabindex="1" readonly="true">	
+ 				  <!-- <select class="selectpicker" ng-model="storename.country">
+				  	<option value="1">India</option>
+				  </select> -->
+			</div>
+			<div class="ch">
+				<div class="input-label">Store Contact Number</div>
+				<input type="text" id="fcom" name="sn" value="" ng-model="store.contact_number" placeholder="Store Contact Number*" validation="storename" tabindex="1">
+			</div>
+			<div class="ch">
+				<div class="input-label">About Us</div>
+				<textarea class="form-control" wrap='off' rows=6 cols="40" ng-model="store.description" ></textarea>
+ 			</div>
+ 			<div class="ch">
+ 			<div class="panel panel-default">
+                <p class="panel-heading" style="text-align:center;">Working Hours</p>
+            
+                <ul class="list-group">
+                	<div ng-repeat="day in store.working_days">	
+	                    <li class="list-group-item">
+	                        {{day.name}}
+	                        <div class="switch pull-right">
+	                            <input id="{{day.name}}" name="TriSea1" type="checkbox" ng-model="day.status" ng-checked="day.status"/>
+	                            <label for="{{day.name}}" class="label-primary"></label>
+	                        </div>
+	                    </li>
+	                </div>    
+                </ul>
+            </div> 
+ 			</div>	
+
+		</div>
+	  	<div class="col-xs-12 col-sm-6 col-md-6 col-sm-offset-0 shadow" >
+	  		<div class="ch">
+	  			<div class="input-label text-center"><p><strong>Cover Image</strong></p></div>
+	  			<img ng-src="{{ store.cover_image || '/static/img/default_cover.png' }}" width="100%" />
+	  			<input type="text" ng-model="store.cover_image" placeholder="Enter Cover Image Url" />
+	  		</div>
+
+	  		<div class="ch">
+	  			<div class="input-label text-center"><p><strong>Photo Gallery</strong></p></div>
+	  			<div ng-repeat="(idx, image) in store.thumbnails"  class="thumbnail-image-container">
+	  			<img ng-src="{{ image || '/static/img/default_cover.png' }}" width="100%" style="padding: 10px" /><span ng-click="removeThumbnail(idx)" class="closeImage"><img src="https://cdn3.iconfinder.com/data/icons/sympletts-free-sampler/128/circle-close-24.png" /></span>
+	  			</div>
+	  			<input type="text"  placeholder="Enter Thumbnail Image Url" ng-model="currentImage" class="input-width-80" />
+	  			<button class="add" name="add" ng-click="addToThumbnail()">Add</button>
+	  		</div>
+
+	  		<div class="ch">
+	  			<div class="input-label text-center"><p><strong>Categories</strong></p></div>
+	  			<div class="check-box" ng-repeat="category in store.pro_categories">
+			        <div class="check-box-primary">
+			            <input type="checkbox" name="checkbox" id="{{category.id}}" ng-model="category.status" ng-checked="category.status" />
+			            <label for="{{category.id}}">{{category.name}}</label>
+			        </div>
+			    </div>
+	  		</div>
+
+	  	</div>
+	  	<div class="col-lg-12 col-xs-12  col-md-12 text-left" > 
+		<button type="button" id="btnSubmit" ng-click="Submit()" class="btn btn-primary">Submit</button>
+         <button type="button" id="btnCancel" ng-click="Cancel()" class="btn btn-danger">Cancel</button>
+		</div>
+	</div>
+	</div>
+</div>
