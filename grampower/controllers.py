@@ -1,6 +1,7 @@
 
 import os
-from flask import render_template, url_for, redirect, send_from_directory, request, make_response
+from functools import wraps
+from flask import render_template, url_for, redirect, send_from_directory, request, make_response, Response
 from grampower import app
 from grampower.service import StoreService
 from grampower.validator import Store
@@ -12,6 +13,25 @@ from grampower.data_builder import DataBuilderService
 store_service = StoreService()
 
 
+def check_auth(username, password):
+    return username == 'admin' and password == 'Welcome@GP'
+
+def authenticate():
+    """Sends a 401 response that enables basic auth"""
+    return Response(
+    'Could not verify your access level for that URL.\n'
+    'You have to login with proper credentials', 401,
+    {'WWW-Authenticate': 'Basic realm="Login Required"'})
+
+def requires_auth(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        auth = request.authorization
+        if not auth or not check_auth(auth.username, auth.password):
+            return authenticate()
+        return f(*args, **kwargs)
+    return decorated
+
 @app.route('/get-store')
 def get_store():
     store_id = request.args.get('id')
@@ -21,6 +41,7 @@ def get_store():
 @app.route('/')
 @app.route('/register')
 @app.route('/store')
+@requires_auth
 def basic_pages(**kwargs):
     return make_response(open('grampower/templates/index.html').read())
 
