@@ -30,7 +30,7 @@ class Store:
         CONTACT_NUMBER:basestring,
         LICENCE_NO:basestring,
         Optional(DESCRIPTION):basestring,
-        Optional(COVER_IMAGE):basestring,
+        COVER_IMAGE:basestring,
         Optional(LATITUDE):basestring,
         Optional(LONGITUDE):basestring,
         Optional(PRO_CATEGORIES):list,

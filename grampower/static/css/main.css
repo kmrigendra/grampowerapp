@@ -40,6 +40,10 @@ font-size: 24px;
     width: 100%;
 }
 
+.form-control{
+  resize: none; overflow: hidden;
+}
+
 .ch input{
 	border-width: 0 0 1px 0;
     outline: none;
@@ -255,6 +259,9 @@ font-size: 24px;
 	width: 120px;
     float: left;
 	}
+  img.thumbnail{
+    padding: 5px; width: 100px; height:100px;
+  }
 a{
 	text-decoration: none !important;
 }
@@ -262,3 +269,291 @@ a{
 	height: 200px; 
 	overflow: hidden; width: 100%;
 }
+
+ng-map{
+height: 200px;
+}
+.well{
+  padding: 0; 
+  margin-bottom: 0;
+  background-color: transparent;
+  border-radius: 0;
+  border:0;
+}
+.well table{
+  margin-bottom: 0;
+}
+.padding-0{
+  padding: 0;
+}
+.product-style{
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.product-style div p{
+    border-bottom: 1px solid #ddd;
+    margin: 0;
+    padding-bottom: 5px;
+}
+/*.product-item span{
+  padding: 5px;
+}*/
+
+p.categories{
+  padding: 5px;
+  border-bottom:0 !important;
+}
+
+.height-250{
+  height: 250px;
+}
+
+#myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#myImg:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+
+/* Add Animation */
+.modal-content {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)}
+    to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+    .modal-content {
+        width: 100%;
+    }
+}
+
+
+.store-wrapper { 
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 200;
+}
+
+
+.row-no-gutter {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.row-no-gutter [class*="col-"] {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+
+#card {
+  background: #fff;
+  position: relative;
+  cursor: pointer;
+  -webkit-box-shadow: 0px 1px 10px 0px rgba(207,207,207,1);
+  -moz-box-shadow: 0px 1px 10px 0px rgba(207,207,207,1);
+  box-shadow: 0px 1px 10px 0px rgba(207,207,207,1);
+
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;  
+}
+
+.store-selected {
+  position: relative;
+  overflow: hidden;
+  min-height: 200px;
+  background: #3D6AA2;
+}
+
+article {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  padding: 20px;
+
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-content: flex-start;
+  -ms-flex-line-pack: start;
+  align-content: flex-start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+
+.info .store,
+.timing {
+  font-size: 24px;
+  font-weight: 200;
+  position: relative;
+
+
+  -webkit-order: 0;
+  -ms-flex-order: 0;
+  order: 0;
+  -webkit-flex: 0 1 auto;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+  -webkit-align-self: auto;
+  -ms-flex-item-align: auto;
+  align-self: auto;
+}
+
+.timing {
+  font-size: 14px;
+  text-transform: capitalize;
+}
+
+.card-text span {
+  font-size: 13px;
+  text-transform: capitalize;
+}
+
+.store-selected:hover figure {
+  opacity: 0.7;
+}
+
+figure {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.2;
+    z-index: 1;
+
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.address-section .row {
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;  
+}
+
+.address-section .row :hover{
+  background: #eaeaea;
+}
+
+.address {
+  padding: 10px; 
+}
+
+.address h1 {
+  font-size: 14px;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+
+.padding-bottom-10{
+  padding-bottom:10px;
+}
+.working-timimgs .start-time,.working-timimgs .end-time{
+  display: inline-block;
+  padding-right: 15px;
+}
+.working-timimgs .start-time select,.working-timimgs .end-time select{
+  outline-style: none;
+}
+.error-msg-main{
+    text-align: center;
+    color: red;
+    font-size: 15px;
+}
+.errorInput{
+  border: 1px solid red;
+}
+
+.cropArea {
+    background: #E4E4E4;
+    overflow: hidden;
+    width: 100%;
+    height: 200px;
+}
+.cropArea img.croppedCoverImg{
+    width: 100%;
+    height: 100%;
+}
+
+/*.table>thead>tr>th{
+  border-bottom-color: #4d90fe;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+ border-top-color: #4d90fe; 
+}*/

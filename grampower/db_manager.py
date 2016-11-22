@@ -35,7 +35,7 @@ class AbstractBaseService(object):
         :param size: number of records to be fetched
         :return all the paginated entities
         '''
-        return self.db().find(skip=page * size, limit=size)
+        return self.db().find(skip=page * size, limit=size).sort("_id",-1)
 
     def save(self, entity):
         '''

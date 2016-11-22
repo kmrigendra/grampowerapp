@@ -7,52 +7,65 @@
 		<p class="small">Enter your details below</p>
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-6 col-sm-offset-0 shadow">
+			<P class="error-msg-main" ng-show="missingMandatoryFields">* Please fill all mandatory fields</P>
 			<div class="ch">
-				<div class="input-label">Store Name</div>
-				<input type="text" id="fcom" name="sn" value="" ng-model="store.name" placeholder="Store Name*" validation="storename" tabindex="1">
+				<div class="input-label">Store Name*</div>
+				<input type="text" id="fcom" name="sn" value="" ng-model="store.name" maxlength="70" placeholder="Store Name"  >
 			</div>
 			<div class="ch">
-				<div class="input-label">License No</div>
- 				  <input type="text" id="fcom" name="sn" value="" ng-model="store.licence_no" placeholder="License No*" validation="storename" tabindex="1">
+				<div class="input-label">License No*</div>
+ 				  <input type="text" id="fcom" name="sl" value="" ng-model="store.licence_no" maxlength="10" placeholder="License No" >
 			</div>
 			<div class="ch">
-				<div class="input-label">Street Address</div>
-				<input type="text" id="fcom" name="sn" value="" ng-model="store.street_address" placeholder="Street Address" validation="storename" tabindex="1">
+				<div class="input-label">Street Address*</div>
+				<input type="text" id="fcom" name="sa" value="" ng-model="store.street_address" maxlength="120" placeholder="Street Address" >
 			</div>
 			<div class="ch">
-				<div class="input-label">Postal Code</div>
-				<input type="text" id="fcom" name="sn" value="" ng-model="store.postal_code" placeholder="Postal Code" validation="storename" tabindex="1">
-			</div>
-			<div class="ch">
-				<div class="input-label">City</div>
-				<input type="text" id="fcom" name="sn" value="" ng-model="store.city" placeholder="City" validation="storename" tabindex="1">
+				<div class="input-label">City*</div>
+				<input type="text" id="fcom" name="sc" value="" ng-model="store.city" maxlength="40" placeholder="City">
 			</div>
 			<div class="ch">
 				<div class="input-label">Country</div>
-					<input type="text" id="fcom" name="sn" value="India" ng-model="store.country" placeholder="Country" validation="storename" tabindex="1" readonly="true">	
- 				  <!-- <select class="selectpicker" ng-model="storename.country">
-				  	<option value="1">India</option>
-				  </select> -->
+					<input type="text" id="fcom" name="sco" value="India" ng-model="store.country" placeholder="Country" readonly="true">	
 			</div>
 			<div class="ch">
-				<div class="input-label">Store Contact Number</div>
-				<input type="text" id="fcom" name="sn" value="" ng-model="store.contact_number" placeholder="Store Contact Number*" validation="storename" tabindex="1">
+				<div class="input-label">Postal Code*</div>
+				<input type="text" id="fcom" name="spc" value="" ng-model="store.postal_code" maxlength="6" ng-only-number placeholder="Postal Code" >
 			</div>
 			<div class="ch">
-				<div class="input-label">About Us</div>
-				<textarea class="form-control" wrap='off' rows=6 cols="40" ng-model="store.description" ></textarea>
+				<div class="input-label">Store Contact Number*</div>
+				<input type="text" id="fcom" name="scn" value="" ng-model="store.contact_number" ng-only-number maxlength="10" placeholder="Store Contact Number">
+			</div>
+			<div class="ch">
+				<div class="input-label">About Us*</div>
+				<textarea class="form-control" wrap='off' rows=6 cols="40" ng-model="store.description" placeholder="About Us" ></textarea>
  			</div>
  			<div class="ch">
  			<div class="panel panel-default">
-                <p class="panel-heading" style="text-align:center;">Working Hours</p>
+                <p class="panel-heading" style="text-align:center;">Working Hours*</p>
             
                 <ul class="list-group">
                 	<div ng-repeat="day in store.working_days">	
 	                    <li class="list-group-item">
-	                        {{day.name}}
+	                        <label>{{day.name}}</label>
 	                        <div class="switch pull-right">
 	                            <input id="{{day.name}}" name="TriSea1" type="checkbox" ng-model="day.status" ng-checked="day.status"/>
 	                            <label for="{{day.name}}" class="label-primary"></label>
+	                        </div>
+	                        <div class="working-timimgs" ng-show="day.status">	                        	
+	                        	<div class="start-time">
+	                        		<label>From: </label>
+	                        		<select ng-model="workingHours[day.name].startDate.hours" ng-options="startHour for startHour in workingHoursArray"></select>
+	                        		<select ng-model="workingHours[day.name].startDate.mins" ng-options="startMin for startMin in workingMinsArray"></select>
+	                        		<select ng-model="workingHours[day.name].startDate.midday" ng-options="startMidday for startMidday in workingMiddayArray"></select>
+	                        	</div>
+	                        	
+	                        	<div class="end-time">
+	                        		<label> To: </label>
+	                        		<select ng-model="workingHours[day.name].endDate.hours" ng-options="endHour for endHour in workingHoursArray"></select>
+	                        		<select ng-model="workingHours[day.name].endDate.mins" ng-options="endMin for endMin in workingMinsArray"></select>
+	                        		<select ng-model="workingHours[day.name].endDate.midday" ng-options="endMidday for endMidday in workingMiddayArray"></select>
+	                        	</div>
 	                        </div>
 	                    </li>
 	                </div>    
@@ -63,11 +76,37 @@
 		</div>
 	  	<div class="col-xs-12 col-sm-6 col-md-6 col-sm-offset-0 shadow" >
 	  		<div class="ch">
-	  			<div class="input-label text-center"><p><strong>Cover Image</strong></p></div>
-	  			<img ng-src="{{ store.cover_image || '/static/img/default_cover.png' }}" width="100%" />
-	  			<input type="text" ng-model="store.cover_image" placeholder="Enter Cover Image Url" />
+
+	  			<div class="input-label text-center"><p><strong>Cover Image*</strong></p></div>
+	  			<div class="cropActionBtns" ng-show="myImage !== ''">
+	  				<button ng-click='displayCroppedImg = true' ng-hide="displayCroppedImg">Preview</button>
+	  				<button ng-click='displayCroppedImg = false' ng-show="displayCroppedImg && !cropDone">Back</button>
+	  				<button ng-click='displayCroppedImg = true;store.cover_image=myCroppedImage;cropDone=true' ng-hide="cropDone">Done</button>
+	  				<button ng-click='displayCroppedImg = true;store.cover_image=myImage;cropDone=true;myCroppedImage=myImage' ng-hide="displayCroppedImg">Cancel Crop</button>
+	  			</div>
+	  			<div class="cropArea">	
+	  				<img-crop image="myImage" area-type="square" result-image="myCroppedImage" ng-hide="displayCroppedImg"></img-crop>
+	  				<img class="croppedCoverImg" ng-src="{{ myCroppedImage || '/static/img/default_cover.png' }}" width="100%" ng-show="displayCroppedImg"/>
+	  			</div>	  			
+	  			<!-- <input type="text" ng-model="store.cover_image" placeholder="Enter Cover Image Url" /> -->
 	  		</div>
 
+	  		<div class="ch">
+	  		<div>Select a file for cover image: <input type="file" id="fileInput" /></div>
+			  <!-- <div class="cropArea">
+			    <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+			  </div> -->			  
+	  		</div>
+
+	  		<div class="ch height-250">
+	  			<div class="input-label text-center"><p ng-click="changeLocation()"><strong>Store Location</strong></p></div>
+		  			<ng-map zoom="11" center="{{store.street_address+','+store.city+' - '+store.postal_code+','+store.country}}">
+		  				<marker position="{{store.street_address+','+store.city+' - '+store.postal_code+','+store.country}}" 
+					      title="You are here">
+					    </marker> 
+		  			</ng-map>
+	  			</div>
+			 
 	  		<div class="ch">
 	  			<div class="input-label text-center"><p><strong>Photo Gallery</strong></p></div>
 	  			<div ng-repeat="(idx, image) in store.thumbnails"  class="thumbnail-image-container">
@@ -78,7 +117,7 @@
 	  		</div>
 
 	  		<div class="ch">
-	  			<div class="input-label text-center"><p><strong>Categories</strong></p></div>
+	  			<div class="input-label text-center"><p><strong>Categories*</strong></p></div>
 	  			<div class="check-box" ng-repeat="category in store.pro_categories">
 			        <div class="check-box-primary">
 			            <input type="checkbox" name="checkbox" id="{{category.id}}" ng-model="category.status" ng-checked="category.status" />

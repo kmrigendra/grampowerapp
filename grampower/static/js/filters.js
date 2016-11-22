@@ -2,8 +2,9 @@
 
 /* Filters */
 
-angular.module('gramPowerFilters', []).filter('uppercase', function() {
+angular.module('customFilters', []).filter('uppercase', function() {
 	return function(input) {
 		return input.toUpperCase();
 	}
 });
+

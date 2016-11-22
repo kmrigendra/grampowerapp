@@ -1,29 +1,37 @@
-<div class="row" >
-	<div class="col-md-10 col-md-offset-1" style="background-color: #F9F9F9;">
-	<div class="row form">
-		<div class="col-lg-12 col-xs-12  col-md-10 col-md-offset-1 text-left" > 
-		<p class="large">All Stores</p>
-		</div>
-		<div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1  shadow">
-		<div ng-repeat="item in store">
-			
-				<div class="section-result" data-ng-click="StoreClicked(item._id)">
-					<div class="section-result-text-content">
-						<p style="font-size: 16px">{{item.name}}</p>
-						<p><span>{{item.street_address}}</span>
-						</p>
-						<p>
-							<span data-ng-repeat="category in item.pro_categories">
-								{{category.name}},
-							</span><br>
-						</p>
-						<p>Opens at 11am </p>
+<div class="row store-wrapper">
+	<div ng-repeat="store in storeList">	
+		<div class="col-sm-4 padding-bottom-10" ng-click="StoreClicked(store._id,$index)">
+			<div id="card" class="weater">
+				<div class="store-selected">
+					<article>
+						<div class="info">
+							<div class="store">{{store.name}}</div>
+							<div class="timing">{{ShowTime(store.working_days)}}</div>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+							<div class="card-text"> 
+								<span>{{(Category(store)).join(', ') | limitTo: 45}}{{(categoryJoin.join(', ')).length > 45 ? '...' : ''}}</span>
+						    </div>
+						</div>    
+					</article>
+					<figure style="background-image: url({{store.cover_image}})"></figure>
+				</div>
+
+				<div class="address-section">
+					<div class="row row-no-gutter">
+						<div class="col-md-12">
+							<div class="address">
+								<div class="card-text">
+								    <span>{{ JoinAddress(store.street_address, store.city, store.postal_code) | limitTo: 45 }}{{fullAddress.length > 45 ? '...' : ''}}</span>
+							    </div>
+							</div>
+						</div>
 					</div>
-					<div class="section-image-container"> 
-						<img class="section-result-image" ng-src="{{item.cover_image}}" />
-					</div>
-				</div>	
+				</div>
+			</div>
 		</div>
-</div>
-</div>
+	</div>
 </div>

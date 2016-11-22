@@ -17,11 +17,12 @@ https://grampowerapp.herokuapp.com/
 3. run the app
 > python runserver.py
 
-4. create and seed the db  
+4. create and seed the db(for dummy data)  
 >python data_builder.py
 
 5. check out your store list
 > http://localhost:5000/
 
-
+6. Please change DB config for local setup
  
+

@@ -1,51 +1,72 @@
+
+
 <div class="row" >
 	<div class="col-md-10 col-md-offset-1" style="background-color: #F9F9F9;">
 	<div class="row form">
 		<div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1  shadow">
 		<div class="image-holder">
-		<img ng-src="{{store.cover_image}}" width="100%" />
+		<img ng-src="{{store.cover_image || '/static/img/default_cover.png'}}" width="100%" />
 		</div>
 		<div class="col-xs-12 col-sm-12 col-md-12">
 			<div class="col-xs-12 col-sm-12 col-md-6">
 			<div class="ch" style="overflow: hidden;">
 	  			<div class="input-label text-center"><p><strong>Photo Gallery</strong></p></div>
 		  			<div data-ng-repeat="item in store.thumbnails" class="thumbnail-image-container">
-		  				<img ng-src="{{item}}" width="100%" style="padding: 5px" />
+		  				<img ng-src="{{item}}" ng-click="OpenModal(item)" class="thumbnail" />
 		  			</div>
-	  			<!-- <img src="/static/img/default_cover.png" width="24%" style="padding: 5px" />
-	  			<img src="/static/img/default_cover.png" width="24%" style="padding: 5px" />
-	  			<img src="/static/img/default_cover.png" width="24%" style="padding: 5px" />
-	  			<img src="/static/img/default_cover.png" width="24%" style="padding: 5px" />
-	  			<img src="/static/img/default_cover.png" width="24%" style="padding: 5px" />
-	  			<img src="/static/img/default_cover.png" width="24%" style="padding: 5px" />
-	  			<img src="/static/img/default_cover.png" width="24%" style="padding: 5px" />
-	  			<img src="/static/img/default_cover.png" width="24%" style="padding: 5px" /> -->
+		  			<p ng-if="store.thumbnails.length<=0">No thumbnail added.</p>
 	  		</div>
+
 	  		<div class="ch">
 				<div class="input-label text-center"><strong>About Us</strong></div>
  				<p>{{store.description}}</p>
+ 				<p ng-if="store.description===''">No description added.</p>
  			</div>
- 			<div class="ch">
-				<div class="input-label text-center"><strong>Product Range</strong></div>
-				<div data-ng-repeat="item in store.pro_categories">
-					<p>{{item.name}}</p>
-				</div>
+ 			<br>
+ 			<div class="ch product-style">
+ 				<div class="input-label text-center padding-0"><p><strong>Product Range</strong></p></div>
+ 				<div class="product-item">
+ 				<p class="categories">{{categories.join(', ') || 'No Category selected'}}</p>
+ 				</div>
  			</div>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-6">
 			<div class="ch">
-				<div class="input-label text-center"><strong>Working Days</strong></div>
-				<div data-ng-repeat="item in store.working_days">
-					<p>{{item.name}}</p>
+				<div class="well">
+				    <table class="table">
+				      <thead>
+				        <tr>
+				        	<th colspan="3" class="text-center">Working Hours</th>	
+				        </tr>
+				      </thead>
+				      <tbody>
+				      <tr ng-repeat="item in store.working_days">
+				      	<td>{{item.name}}</td>
+				      	<td>{{item.open}}</td>
+				      	<td>{{item.close || "Closed"}}</td>
+				      </tr>
+				      </tbody>
+				    </table>
 				</div>
  			</div>
-			<div class="ch">
-	  			<div class="input-label text-center"><p><strong>Store Location</strong></p></div>
-	  			<img src="/static/img/default_cover.png" width="100%" />
+			<div class="ch height-250">
+	  			<div class="input-label text-center"><p ng-click="changeLocation()"><strong>Store Location</strong></p></div>
+	  			<ng-map zoom="11" center="{{address}}">
+	  				<marker position="{{address}}" 
+				      title="You are here">
+				    </marker> 
+	  			</ng-map>
 	  		</div>
 			</div>
 		</div>
 		</div>
 	</div>
 	</div>
-	</div>
+</div>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+  <span class="close" ng-click="CloseModal()">×</span>
+  <img class="modal-content" id="img01">
+</div>
+

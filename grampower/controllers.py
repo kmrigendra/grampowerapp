@@ -11,10 +11,11 @@ from grampower.data_builder import DataBuilderService
 
 store_service = StoreService()
 
+
 @app.route('/get-store')
 def get_store():
     store_id = request.args.get('id')
-    return RestResponse(store_service.find_store_by_id(store_id)).to_json()
+    return store_service.find_store_by_id(store_id)
 
 # routing for basic pages (pass routing onto the Angular app)
 @app.route('/')
@@ -45,6 +46,12 @@ def save_store():
 def data_builder():
     DataBuilderService().data_builder()
     return RestResponse(data = None, messages="Build data successfully...").to_json()
+
+
+# special file handlers and error handlers
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),'img/favicon.ico')
 
 
 @app.errorhandler(404)

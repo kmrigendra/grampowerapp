@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('GramPower', [])
+angular.module('GramPower', ['customServices', 'customDirectives', 'ngRoute','ngMap','ngImgCrop'])
 	.config(['$routeProvider', '$locationProvider',
 		function($routeProvider, $locationProvider) {
 		$routeProvider
